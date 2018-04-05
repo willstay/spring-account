@@ -5,10 +5,31 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
-public class AccountDaoMock {
+public class AccountDaoMock implements AccountDao {
     private final List<Account> accounts;
+
+    public List<Account> getAll() {
+        return accounts;
+    }
+
+    public Account getById(Long id) {
+        for (Account account : accounts) {
+            if (account.getId().equals(id)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
+    public List<Account> getByOwner(Long owner) {
+        return accounts.stream()
+                .filter(account -> Objects.equals(account.getOwnerId(),owner))
+                .collect(Collectors.toList());
+    }
 
     public AccountDaoMock() {
         this.accounts = new ArrayList<>();

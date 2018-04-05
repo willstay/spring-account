@@ -1,6 +1,7 @@
-package com.willstay.domain;
+package com.willstay.service;
 
 import com.willstay.dao.AccountDao;
+import com.willstay.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
